@@ -1,0 +1,174 @@
+version: "3.1"
+
+nlu:
+- lookup: stock_symbol
+  examples: |
+    - ACB
+    - AGG
+    - ANV
+    - ASM
+    - BAB
+    - BCG
+    - BID
+    - BMC
+    - BMP
+    - BVH
+    - C32
+    - C47
+    - CAV
+    - CII
+    - CKG
+    - CMG
+    - CNG
+    - CSM
+    - CTD
+    - CTG
+    - CTS
+    - DBC
+    - DCM
+    - DGC
+    - DGW
+    - DHC
+    - DHG
+    - DIG
+    - DMC
+    - DPM
+    - DPR
+    - DRC
+    - DXG
+    - DXV
+    - EIB
+    - FLC
+    - FPT
+    - GAS
+    - GEX
+    - GMD
+    - GVR
+    - HAG
+    - HAH
+    - HBC
+    - HDB
+    - HDC
+    - HMC
+    - HNG
+    - HOT
+    - HPX
+    - HPG
+    - HQC
+    - HSG
+    - HT1
+    - ITA
+    - KBC
+    - KDH
+    - KHP
+    - KMR
+    - KSB
+    - LCG
+    - LDG
+    - LHG
+    - LIX
+    - MBB
+    - MCH
+    - MSN
+    - MWG
+    - NBB
+    - NLG
+    - NTL
+    - NVL
+    - OGC
+    - PAN
+    - PC1
+    - PDR
+    - PET
+    - PGI
+    - PHR
+    - PIT
+    - PLX
+    - PNJ
+    - PPC
+    - PTB
+    - PVD
+    - PVS
+    - PVT
+    - QCG
+    - QNS
+    - RAL
+    - REE
+    - SBT
+    - SCR
+    - SHB
+    - SSI
+    - STB
+    - TCB
+    - TCH
+    - TDM
+    - TNA
+    - TPB
+    - TRA
+    - TV2
+    - VCB
+    - VCI
+    - VGC
+    - VIC
+    - VJC
+    - VNM
+    - VND
+    - VPB
+    - VRE
+
+- lookup: company
+  examples: |
+    - Ngân hàng Á Châu
+    - Công ty CP Đầu tư và Phát triển Bất động sản An Gia
+    - Công ty CP Nam Việt
+    - Công ty CP Tập đoàn Sao Mai
+    - Ngân hàng TMCP Bắc Á
+    - Công ty CP Bamboo Capital
+    - Ngân hàng TMCP Đầu tư và Phát triển Việt Nam
+    - Công ty CP Khoáng sản Bình Định
+    - Công ty CP Nhựa Bình Minh
+    - Tập đoàn Bảo Việt
+    - Công ty CP Xây dựng 3-2
+    - Công ty CP Xây dựng 47
+    - Công ty CP Dây và Cáp điện Việt Nam
+    - Công ty CP Hạ tầng Kỹ thuật TP Hồ Chí Minh
+    - Công ty CP Đầu tư và Phát triển Cà Mau
+    - Công ty CP Tập đoàn Công nghệ CMC
+    - Công ty CP CNG Việt Nam
+    - Công ty CP Công nghiệp Cao su Miền Nam
+    - Công ty CP Xây dựng Coteccons
+    - Ngân hàng TMCP Công thương Việt Nam
+    - Công ty CP Chứng khoán Ngân hàng Công thương Việt Nam
+    - Công ty CP Dabaco Việt Nam
+    - Công ty CP Phân bón Dầu khí Cà Mau
+    - Công ty CP Hóa chất Đức Giang
+    - Công ty CP Thế Giới Số
+    - Công ty CP Đông Hải Bến Tre
+    - Công ty CP Dược Hậu Giang
+    - Tổng Công ty Cổ phần Đầu tư Phát triển Xây dựng
+    - Công ty CP Hàng tiêu dùng Masan
+    - Công ty CP Tập đoàn Masan
+    - Công ty CP Đầu tư Thế Giới Di Động
+    - Công ty CP Đầu tư Nam Long
+    - Công ty CP Đầu tư và Phát triển Nhà Đà Nẵng
+    - Công ty CP Vinhomes
+    - Tập đoàn Vingroup
+    - Ngân hàng TMCP Ngoại Thương Việt Nam
+    - Công ty CP Sữa Việt Nam
+    - Ngân hàng TMCP Việt Nam Thịnh Vượng
+    - Công ty CP Đầu tư Phát triển Đô thị và Khu công nghiệp Sông Đà
+    - Công ty CP Phát triển Nhà Thủ Đức
+    - Công ty CP Địa ốc Sài Gòn Thương Tín
+    - Ngân hàng TMCP Kỹ Thương Việt Nam
+    - Công ty CP Dịch vụ Hàng không Taseco
+    - Ngân hàng TMCP Phát triển Thành phố Hồ Chí Minh
+    - Công ty CP Chứng khoán VNDirect
+    - Ngân hàng TMCP Quân đội
+    - Ngân hàng TMCP Sài Gòn Thương Tín
+    - Công ty CP Tập đoàn Hòa Phát
+    - Công ty CP Đầu tư và Phát triển Đô thị Long Giang
+    - Công ty CP Hóa - Dược phẩm Mekophar
+    - Công ty CP Nhiệt điện Phả Lại
+    - Công ty CP Bảo hiểm PVI
+    - Công ty CP Đầu tư & Phát triển Công nghiệp
+    - Công ty CP Phát triển Nhà Bà Rịa

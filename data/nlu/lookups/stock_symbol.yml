@@ -1,0 +1,79 @@
+version: '3.1'
+
+nlu:
+- lookup: stock_symbol
+  examples: |
+    - VIC
+    - VHM
+    - VNM
+    - VCB
+    - BID
+    - CTG
+    - HPG
+    - VPB
+    - MBB
+    - FPT
+    - GAS
+    - MSN
+    - PNJ
+    - PDR
+    - SSI
+    - STB
+    - TCB
+    - VRE
+    - BVH
+    - NVL
+    - HDB
+    - VJC
+    - POW
+    - SBT
+    - KDH
+    - VPI
+    - PLX
+    - EIB
+    - HSG
+    - NLG
+    - MWG
+    - SAB
+    - VGC
+    - VHC
+    - DPM
+
+
+- lookup: company
+  examples: |
+    - Vingroup
+    - Vinhomes
+    - Vinamilk
+    - Vietcombank
+    - BIDV
+    - VietinBank
+    - Hoa Phát Group
+    - VPBank
+    - MB Bank
+    - FPT Corporation
+    - PetroVietnam Gas
+    - Masan Group
+    - PNJ Jewelry
+    - Phu Nhuan Jewelry
+    - Saigon Securities Inc.
+    - Sacombank
+    - Techcombank
+    - Vincom Retail
+    - Bao Viet Holdings
+    - Novaland
+    - HDBank
+    - VietJet Air
+    - PetroVietnam Power
+    - Thanh Thanh Cong - Bien Hoa
+    - Khang Dien House
+    - Van Phu - Invest
+    - Petrolimex
+    - Eximbank
+    - Hoa Sen Group
+    - Nam Long Group
+    - Mobile World
+    - Sabeco
+    - Viglacera
+    - Vinh Hoan Corp
+    - PetroVietnam Fertilizer & Chemicals

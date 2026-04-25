@@ -1,0 +1,103 @@
+version: '3.1'
+
+rules:
+- rule: tổng giá trị bán
+  steps:
+    - intent: tổng giá trị bán
+    - action: action_return_intent_and_entity
+
+- rule: OTP
+  steps:
+    - intent: OTP
+    - action: action_return_intent_and_entity
+
+- rule: check lệnh bán
+  steps:
+    - intent: check lệnh bán
+    - action: action_return_intent_and_entity
+
+- rule: Giờ mở cửa, đóng cửa
+  steps:
+    - intent: Giờ mở cửa, đóng cửa
+    - action: action_return_intent_and_entity
+
+- rule: giao dịch phái sinh
+  steps:
+    - intent: giao dịch phái sinh
+    - action: action_return_intent_and_entity
+
+- rule: hỏi thông tin người chăm sóc
+  steps:
+    - intent: hỏi thông tin người chăm sóc
+    - action: action_return_intent_and_entity
+
+- rule: thời điểm ghi nhận cổ phiếu
+  steps:
+    - intent: thời điểm ghi nhận cổ phiếu
+    - action: action_return_intent_and_entity
+    
+- rule: hỏi tên đăng nhập
+  steps:
+    - intent: hỏi tên đăng nhập
+    - action: action_return_intent_and_entity
+
+- rule: lịch sử
+  steps:
+    - intent: lịch sử
+    - action: action_return_intent_and_entity
+
+- rule: số dư
+  steps:
+    - intent: số dư
+    - action: action_return_intent_and_entity
+
+- rule: thông tin công ty
+  steps:
+    - intent: thông tin công ty
+    - action: action_return_intent_and_entity
+
+- rule: hỏi mã cổ phiếu
+  steps:
+    - intent: hỏi mã cổ phiếu
+    - action: action_return_intent_and_entity
+
+- rule: loại hình kinh doanh
+  steps:
+    - intent: loại hình kinh doanh
+    - action: action_return_intent_and_entity
+
+- rule: thông tin cổ đông
+  steps:
+    - intent: thông tin cổ đông
+    - action: action_return_intent_and_entity
+
+- rule: Sự thay đổi giá giao dịch
+  steps:
+    - intent: Sự thay đổi giá giao dịch
+    - action: action_return_intent_and_entity
+
+- rule: Phí giao dịch
+  steps:
+    - intent: Phí giao dịch
+    - action: action_return_intent_and_entity
+
+- rule: Fallback response
+  steps:
+  - intent: nlu_fallback
+  - action: action_default_fallback
+
+- rule: buy stock
+  condition:
+    - active_loop: null 
+  steps:
+    - intent: buy_form
+    - action: buy_stock_form
+    - active_loop: buy_stock_form
+
+- rule: sell stock
+  condition:
+    - active_loop: null 
+  steps:
+    - intent: sell_form
+    - action: sell_stock_form
+    - active_loop: sell_stock_form

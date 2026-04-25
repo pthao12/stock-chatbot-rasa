@@ -1,0 +1,317 @@
+version: '3.1'
+
+stories:
+- story: giao dịch mua cổ phiếu với đồng ý
+  steps:
+    - intent: buy_form
+    - action: buy_stock_form
+    - active_loop: buy_stock_form
+    - active_loop: null
+    - action: action_submit_buy_stock_form
+    - action: utter_ask_confirmation  # Bot hỏi xác nhận (đồng ý/từ chối)
+    - intent: dong_y  # Người dùng đồng ý
+    - action: action_reset_form
+
+- story: giao dịch mua cổ phiếu với từ chối
+  steps:
+    - intent: buy_form
+    - action: buy_stock_form
+    - active_loop: buy_stock_form
+    - active_loop: null
+    - action: action_submit_buy_stock_form
+    - action: utter_ask_confirmation
+    - intent: tu_choi  # Người dùng từ chối
+    - action: action_reset_form
+
+- story: giao dịch bán cổ phiếu với đồng ý
+  steps:
+    - intent: sell_form
+    - action: sell_stock_form
+    - active_loop: sell_stock_form
+    - active_loop: null
+    - action: action_submit_sell_stock_form
+    - action: utter_ask_confirmation
+    - intent: dong_y  # Người dùng đồng ý
+    - action: action_reset_form
+
+- story: giao dịch bán cổ phiếu với từ chối
+  steps:
+    - intent: sell_form
+    - action: sell_stock_form
+    - active_loop: sell_stock_form
+    - active_loop: null
+    - action: action_submit_sell_stock_form
+    - action: utter_ask_confirmation  # Hoặc utter_ask_sell_confirmation
+    - intent: tu_choi
+    - action: action_reset_form
+
+- story: chuyển từ buy form sang sell form + đồng ý submit
+  steps:
+  - intent: buy_form
+  - action: buy_stock_form
+  - active_loop: buy_stock_form
+  - intent: sell_form
+  - action: utter_ask_switch_confirmation
+  - intent: dong_y
+  - action: action_switch_form
+  - action: sell_stock_form
+  - active_loop: sell_stock_form
+  - active_loop: null
+  - action: action_submit_sell_stock_form
+  - action: utter_ask_confirmation
+  - intent: dong_y
+  - action: action_return_intent_and_entity
+  - action: action_reset_form
+
+- story: chuyển từ buy form sang sell form + từ chối submit
+  steps:
+  - intent: buy_form
+  - action: buy_stock_form
+  - active_loop: buy_stock_form
+  - intent: sell_form
+  - action: utter_ask_switch_confirmation
+  - intent: dong_y
+  - action: action_switch_form
+  - action: sell_stock_form
+  - active_loop: sell_stock_form
+  - active_loop: null
+  - action: action_submit_sell_stock_form
+  - action: utter_ask_confirmation
+  - intent: tu_choi
+  - action: action_return_intent_and_entity
+  - action: action_reset_form
+
+
+- story: chuyển từ sell form sang buy form + từ chối submit
+  steps:
+  - intent: sell_form
+  - action: sell_stock_form
+  - active_loop: sell_stock_form
+  - intent: buy_form  # Người dùng muốn chuyển sang mua
+  - action: utter_ask_switch_confirmation
+  - intent: dong_y
+  - action: action_switch_form  # Hủy form bán và kích hoạt form mua
+  - action: buy_stock_form
+  - active_loop: buy_stock_form  # Form mua đang active
+  - active_loop: null
+  - action: action_submit_buy_stock_form
+  - action: utter_ask_confirmation
+  - intent: tu_choi
+  - action: action_return_intent_and_entity
+  - action: action_reset_form
+
+- story: chuyển từ sell form sang buy form + đồng ý submit
+  steps:
+  - intent: sell_form
+  - action: sell_stock_form
+  - active_loop: sell_stock_form
+  - intent: buy_form  # Người dùng muốn chuyển sang mua
+  - action: utter_ask_switch_confirmation
+  - intent: dong_y
+  - action: action_switch_form  # Hủy form bán và kích hoạt form mua
+  - action: buy_stock_form
+  - active_loop: buy_stock_form  # Form mua đang active
+  - active_loop: null
+  - action: action_submit_buy_stock_form
+  - action: utter_ask_confirmation
+  - intent: dong_y
+  - action: action_return_intent_and_entity
+  - action: action_reset_form
+  
+- story: Người dùng hỏi thông tin khi điền form + từ chối
+  steps:
+  - intent: buy_form
+  - action: buy_stock_form
+  - active_loop: buy_stock_form
+  - intent: biến động thị trường
+  - action: action_return_intent_and_entity
+  - action: buy_stock_form  # Quay lại form
+  - active_loop: buy_stock_form
+  - intent: lịch sử
+  - action: action_return_intent_and_entity
+  - action: buy_stock_form  # Quay lại form
+  - active_loop: buy_stock_form
+  - active_loop: null
+  - action: action_submit_buy_stock_form
+  - action: utter_ask_confirmation
+  - intent: tu_choi
+  - action: action_return_intent_and_entity
+  - action: action_reset_form
+
+- story: Người dùng hỏi thông tin khi điền form + đồng ý
+  steps:
+  - intent: buy_form
+  - action: buy_stock_form
+  - active_loop: buy_stock_form
+  - intent: thông tin cổ đông
+  - action: action_return_intent_and_entity
+  - action: buy_stock_form  # Quay lại form
+  - active_loop: buy_stock_form
+  - intent: hồ sơ công ty
+  - action: action_return_intent_and_entity
+  - action: buy_stock_form  # Quay lại form
+  - active_loop: buy_stock_form
+  - active_loop: null
+  - action: action_submit_buy_stock_form
+  - action: utter_ask_confirmation
+  - intent: dong_y
+  - action: action_return_intent_and_entity
+  - action: action_reset_form
+
+- story: hỏi thông tin khi bán cổ phiếu
+  steps:
+  - intent: sell_form
+  - action: sell_stock_form
+  - active_loop: sell_stock_form
+  - intent: thông tin công ty
+  - action: action_return_intent_and_entity
+  - action: sell_stock_form  # Quay lại form
+  - active_loop: sell_stock_form
+  - intent: thuế bán
+  - action: action_return_intent_and_entity
+  - action: sell_stock_form  # Quay lại form
+  - active_loop: sell_stock_form
+  - active_loop: null
+  - action: action_submit_sell_stock_form
+  - action: utter_ask_confirmation
+  - intent: dong_y
+  - action: action_return_intent_and_entity
+  - action: action_reset_form
+
+- story: hỏi thông tin khi bán cổ phiếu
+  steps:
+  - intent: sell_form
+  - action: sell_stock_form
+  - active_loop: sell_stock_form
+  - intent: Phí giao dịch
+  - action: action_return_intent_and_entity
+  - action: sell_stock_form  # Quay lại form
+  - active_loop: sell_stock_form
+  - intent: thuế bán
+  - action: action_return_intent_and_entity
+  - action: sell_stock_form  # Quay lại form
+  - active_loop: sell_stock_form
+  - active_loop: null
+  - action: action_submit_sell_stock_form
+  - action: utter_ask_confirmation
+  - intent: tu_choi
+  - action: action_return_intent_and_entity
+  - action: action_reset_form
+
+- story: hỏi thông tin khi chuyển form từ mua sang bán + đồng ý submit
+  steps:
+  - intent: sell_form
+  - action: sell_stock_form
+  - active_loop: sell_stock_form
+  - action: sell_stock_form
+  - active_loop: sell_stock_form
+  - intent: buy_form  # Người dùng muốn chuyển sang mua
+  - action: utter_ask_switch_confirmation
+  - intent: dong_y
+  - action: action_switch_form  # Hủy form bán và kích hoạt form mua
+  - action: buy_stock_form
+  - active_loop: buy_stock_form  # Form mua đang active
+  - intent: số dư
+  - action: action_return_intent_and_entity
+  - action: buy_stock_form
+  - active_loop: buy_stock_form
+  - active_loop: null
+  - action: action_submit_buy_stock_form
+  - action: utter_ask_confirmation
+  - intent: dong_y
+  - action: action_return_intent_and_entity
+  - action: action_reset_form
+
+- story: hỏi thông tin khi chuyển form từ mua sang bán + từ chối submit
+  steps:
+  - intent: sell_form
+  - action: sell_stock_form
+  - active_loop: sell_stock_form
+  - action: sell_stock_form
+  - active_loop: sell_stock_form
+  - intent: buy_form  # Người dùng muốn chuyển sang mua
+  - action: utter_ask_switch_confirmation
+  - intent: dong_y
+  - action: action_switch_form  # Hủy form bán và kích hoạt form mua
+  - action: buy_stock_form
+  - active_loop: buy_stock_form  # Form mua đang active
+  - intent: số dư
+  - action: action_return_intent_and_entity
+  - action: buy_stock_form
+  - active_loop: buy_stock_form
+  - active_loop: null
+  - action: action_submit_buy_stock_form
+  - action: utter_ask_confirmation
+  - intent: tu_choi
+  - action: action_return_intent_and_entity
+  - action: action_reset_form
+  
+
+- story: hỏi thông tin đơn cổ phiếu
+  steps:
+  - intent: thông tin công ty
+  - action: action_return_intent_and_entity 
+  - intent: hỏi mã cổ phiếu
+  - action: action_return_intent_and_entity
+  - intent: lịch sử
+  - action: action_return_intent_and_entity
+
+- story: đang điền form mua thì huỷ
+  steps:
+  - intent: buy_form
+  - action: buy_stock_form
+  - active_loop: buy_stock_form
+  - or:
+    -  intent: tu_choi
+    -  intent: không rõ
+    -  intent: cancel_form
+  - action: utter_ask_confirm_cancel
+  - intent: dong_y
+  - action: action_reset_form
+  
+- story: đang điền form bán thì huỷ
+  steps:
+  - intent: sell_form
+  - action: sell_stock_form
+  - active_loop: sell_stock_form
+  - or:
+    -  intent: tu_choi
+    -  intent: không rõ
+    -  intent: cancel_form
+  - action: utter_ask_confirm_cancel
+  - intent: dong_y
+  - action: action_reset_form
+
+- story: giao dịch mua cổ phiếu với tiếp tục
+  steps:
+    - intent: buy_form
+    - action: buy_stock_form
+    - active_loop: buy_stock_form
+    - or:
+        - intent: tu_choi
+        - intent: không rõ
+        - intent: cancel_form
+    - action: utter_ask_confirm_cancel
+    - intent: tu_choi  # Người dùng từ chối hủy
+    - action: buy_stock_form  # Tiếp tục form mua cổ phiếu
+    - active_loop: buy_stock_form
+    - active_loop: null
+    - action: action_submit_buy_stock_form
+    - action: utter_ask_confirmation  # Bot hỏi xác nhận giao dịch (đồng ý/từ chối)
+    - intent: dong_y  # Người dùng đồng ý
+    - action: action_reset_form
+
+- story: giao dịch bán cổ phiếu với tiếp tục
+  steps:
+    - intent: sell_form
+    - action: sell_stock_form
+    - active_loop: sell_stock_form
+    - or:
+        - intent: tu_choi
+        - intent: không rõ
+        - intent: cancel_form
+    - action: utter_ask_confirm_cancel
+    - intent: tu_choi  # Người dùng từ chối hủy
+    - action: sell_stock_form  # Tiếp tục form bán cổ phiếu
+    - active_loop: sell_stock_form
+    - active_loop: null

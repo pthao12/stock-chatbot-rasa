@@ -1,0 +1,133 @@
+version: '3.1'
+intents:
+  - Giờ mở cửa, đóng cửa
+  - OTP
+  - Phí giao dịch
+  - buy_form
+  - check lệnh bán
+  - giao dịch phái sinh
+  - hỏi thông tin người chăm sóc
+  - hỏi tên đăng nhập
+  - lịch sử
+  - sell_form
+  - số dư
+  - thời điểm ghi nhận cổ phiếu
+  - tổng giá trị bán
+  - dong_y
+  - tu_choi
+  - hỏi mã cổ phiếu
+  - thông tin công ty
+  - loại hình kinh doanh
+  - thông tin cổ đông
+  - Sự thay đổi giá giao dịch
+  - cancel_form
+  - thông tin niêm yết
+  - báo cáo kinh doanh công ty
+
+entities:
+  - stock_symbol
+  - amount
+  - price
+  - contact_method
+  - time
+  - company
+  - ratio
+
+responses:
+  utter_ask_stock_symbol:
+    - text: "{{\"intent\": \"form\", \"required_slot\": \"stock_symbol\"}}"   
+
+  utter_ask_amount:
+    - text: "{{\"intent\": \"form\", \"required_slot\": \"amount\"}}"
+
+  utter_ask_sell_stock_symbol:
+    - text: Bạn muốn bán cổ phiếu nào?
+
+  utter_ask_sell_amount:
+    - text: Bạn muốn bán bao nhiêu cổ phiếu?
+
+  utter_default:
+    - text: Xin lỗi, tôi không hiểu. Bạn có thể nói rõ hơn không? 
+
+  utter_ask_confirmation:
+    - text: "Bạn có muốn thực hiện giao dịch không?"
+      buttons:
+        - title: "Đồng ý"
+          payload: "/dong_y"       
+        - title: "Từ chối"
+          payload: "/deny"
+
+  utter_ask_switch_confirmation:
+    - text: "Bạn có chắc chắn muốn huỷ giao dịch hiện tại và chuyển sang giao dịch khác không?"
+      buttons:
+        - title: "Đồng ý"
+          payload: "/dong_y"       
+        - title: "Từ chối"
+          payload: "/deny"
+
+  utter_ask_confirm_cancel:
+    - text: "Bạn có chắc chắn muốn huỷ giao dịch hiện tại không?"
+      buttons:
+        - title: "Đồng ý"
+          payload: "/dong_y"       
+        - title: "Từ chối"
+          payload: "/deny"
+
+forms:
+  buy_stock_form:
+    required_slots:
+    - stock_symbol
+    - amount
+  sell_stock_form:
+    required_slots:
+    - stock_symbol
+    - amount
+
+slots:
+  stock_symbol:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: stock_symbol
+      intent:
+      - inform
+      - buy_stock
+      - sell_stock
+      conditions:
+      - active_loop: buy_stock_form
+        requested_slot: stock_symbol
+      - active_loop: sell_stock_form
+        requested_slot: stock_symbol
+
+  amount:
+    type: float
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: amount
+      intent:
+      - inform
+      - buy_stock
+      - sell_stock
+      conditions:
+      - active_loop: buy_stock_form
+        requested_slot: amount
+      - active_loop: sell_stock_form
+        requested_slot: amount
+    
+actions:
+  - action_submit_buy_stock_form
+  - action_switch_form
+  - action_return_intent_and_entity
+  - action_reset_form
+  - action_buy_stock
+  - validate_buy_stock_form
+  - validate_sell_stock_form
+  - action_submit_sell_stock_form
+  - action_default_fallback
+  - action_restart
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

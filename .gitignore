@@ -1,0 +1,13 @@
+venv
+mindsdb_env
+story_graph.dot
+.vscode
+.rasa
+.ipynb_checkpoints
+.idea
+cc.vi.300.bin
+models
+.tensorboard
+.history
+temp
+results

@@ -1,0 +1,34 @@
+assistant_id: 20240923-121251-independent-burrata
+language: vi
+pipeline:
+- name: rasa.nlu.tokenizers.vi_tokenizer.VietnameseTokenizer
+- name: RegexFeaturizer
+- name: LexicalSyntacticFeaturizer
+- name: CountVectorsFeaturizer
+- analyzer: char_wb
+  max_ngram: 4
+  min_ngram: 1
+  name: CountVectorsFeaturizer
+- name: DIETClassifier
+  epochs: 100
+  dropout: 0.2
+  intent_classification: true
+  entity_recognition: true
+  evaluate_every_number_of_epochs: 5
+  evaluate_on_number_of_examples: 190
+- name: EntitySynonymMapper
+- ambiguity_threshold: 0.1
+  name: FallbackClassifier
+  threshold: 0.6
+policies:
+- name: MemoizationPolicy
+- name: RulePolicy
+- constrain_similarities: true
+  dropout: 0.2
+  epochs: 100
+  max_history: 5
+  name: TEDPolicy
+recipe: default.v1
+training:
+  tensorboard:
+    log_dir: ./logs
